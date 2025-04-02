@@ -14,6 +14,8 @@ restart.addEventListener("click", (event) => {
     restartGame()
 })
 
+//On click events calling functions
+
 const winningCons = [
     [0,1,2],
     [3,4,5],
@@ -28,6 +30,8 @@ const winningCons = [
     
 let gridSq = ["", "", "", "", "", "", "", "", ""]
 let currentPlayer = "X";
+
+//Basic needed variables, gridSq array to store all clicked vals
 
 const gameInput = (button, buttonVal) => {
     
@@ -50,9 +54,13 @@ const winnerCheck = () => {
         let one = buttons[con[0]].textContent
         let two = buttons[con[1]].textContent
         let three = buttons[con[2]].textContent
+
+        //Loops through winning cons, gets the value of each button with .textContent and stores in varibles
         
         if (one !== "" && two !== "" && three !== "" && one === two && two === three) {
             hasWon = true
+
+        //Checking if one, two and three all do not = an empty string, and also = eachother. If so set hasWon to true
             
             if (one === "X" && two === "X" && three === "X") {
                 document.getElementsByClassName("text")[0].textContent = "Crosses win!"
@@ -62,6 +70,8 @@ const winnerCheck = () => {
                 document.getElementsByClassName("text")[0].textContent = "Noughts win!"
                 return
             }
+
+            //Two if statments to check contense of one, two and three. If the same print out winner, return to stop a dif message before reset
         }
     }
 
@@ -71,9 +81,11 @@ const winnerCheck = () => {
             document.getElementsByClassName("text")[0].textContent = "It's a Draw!"
         }
     }
+
+    //If hasWon is not true then check if all values in buttons are filled, if allButtons = true print draw msg 
+    // [...buttons] converts buttons to an array 
 }
 
-//Loop through winingCons to check if a subarray is met, if so print winner
 
 const restartGame = () => {
     gridSq = ["", "", "", "", "", "", "", "", ""];
@@ -84,4 +96,6 @@ const restartGame = () => {
     })
 }
 
-//On restart button click reset gridSq to blank and clear winner message
+//Setting varible vals back to origanl vals + message back to Crosses go first
+//"text"[0] used to make sure the first element with "text" is changed
+//forEach used on buttons to loop through buttons and clear stored values
